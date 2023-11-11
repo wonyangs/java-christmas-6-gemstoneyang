@@ -67,8 +67,8 @@
 ## Order
 
 - [ ]  주문 내역 <주문 메뉴명, 개수>
-    - [ ]  OrderHistory 객체
-    - [ ]  toString으로 주문 내역 반환
+    - [X]  OrderHistory 객체
+    - [X]  toString으로 주문 내역 반환
     - [ ]  총 주문 금액 반환
     - [ ]  예외 처리
         - [ ]  음료만 주문시 예외

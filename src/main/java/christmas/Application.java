@@ -1,8 +1,9 @@
 package christmas;
 
+import christmas.domain.OrderHistory;
 import christmas.service.PlannerInitService;
-import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -11,5 +12,8 @@ public class Application {
         OutputView.welcomeMessage();
         int date = service.getUserExpectDate();
         System.out.println(date);
+
+        OrderHistory order = service.getUserOrder();
+        System.out.println(order);
     }
 }
