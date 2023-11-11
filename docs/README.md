@@ -85,3 +85,13 @@
 - [ ]  총 혜택 금액 반환
 - [ ]  총 할인 금액 반환
 - [ ]  혜택 내역 toString 반환
+
+# Enum
+
+## MenuCategory
+
+- [X]  메뉴의 종류 관리하기
+
+## Menu
+
+- [X]  메뉴 이름, MenuCategory, 가격 관리하기
