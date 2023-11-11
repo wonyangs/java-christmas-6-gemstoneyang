@@ -1,7 +1,7 @@
 package christmas.domain;
 
 /**
- * 주문 내역을 저장하는 클래스
+ * 주문 내역과 주문 날짜를 저장하는 클래스
  */
 public class Order {
     private final OrderHistory orders;

@@ -4,6 +4,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.EnumSet;
 
+/**
+ * 날짜 정보를 관리하는 클래스
+ */
 public class Date {
     private static final EnumSet<DayOfWeek> WEEKENDS = EnumSet.of(DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
 

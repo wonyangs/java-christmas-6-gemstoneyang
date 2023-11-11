@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * 주문 목록을 관리하는 클래스
+ */
 public class OrderHistory {
     private final Map<String, Integer> orders  = new HashMap<>();
 
