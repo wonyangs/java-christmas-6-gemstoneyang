@@ -100,3 +100,4 @@
 ## Menu
 
 - [X]  메뉴 이름, MenuCategory, 가격 관리하기
+- [X]  메뉴 이름으로 해당 Menu 정보 찾기
