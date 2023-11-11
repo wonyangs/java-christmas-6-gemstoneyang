@@ -1,6 +1,7 @@
 package christmas.service;
 
 import christmas.domain.Date;
+import christmas.domain.Order;
 import christmas.domain.OrderHistory;
 import christmas.view.InputView;
 
@@ -31,5 +32,9 @@ public class PlannerInitService {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public Order getOrder(Date date, OrderHistory orderHistory) {
+        return new Order(date, orderHistory);
     }
 }
