@@ -1,7 +1,7 @@
 package christmas.service;
 
 import christmas.domain.Date;
-import christmas.domain.Orders;
+import christmas.domain.OrderHistory;
 import christmas.view.InputView;
 
 public class PlannerInitService {
@@ -21,12 +21,12 @@ public class PlannerInitService {
         }
     }
 
-    public Orders getUserOrder() {
+    public OrderHistory getUserOrder() {
         while (true) {
             try {
                 String input = InputView.getOrder();
 
-                return new Orders(input);
+                return new OrderHistory(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

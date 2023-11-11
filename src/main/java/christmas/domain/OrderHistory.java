@@ -6,30 +6,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * 주문 내역을 저장하는 클래스
- */
 public class OrderHistory {
-    private final Map<String, Integer> orders = new HashMap<>();
+    private final Map<String, Integer> orders  = new HashMap<>();
 
-    public OrderHistory(String orderInput) {
+    public OrderHistory(String input) {
         // todo: 검증로직 추가
-
-        if (orderInput.equals("")) {
+        if (input.equals("")) {
             return;
         }
+        parseInput(input);
+    }
 
-        Arrays.stream(orderInput.split(","))
+    private void parseInput(String input) {
+        Arrays.stream(input.split(","))
                 .map(s -> s.split("-"))
                 .forEach(arr -> orders.put(arr[0], Integer.parseInt(arr[1])));
     }
 
     public int totalPrice() {
-        int total = orders.entrySet().stream()
+        return orders.entrySet().stream()
                 .mapToInt(entry -> Menu.fromName(entry.getKey()).getPrice() * entry.getValue())
                 .sum();
-
-        return total;
     }
 
     @Override
