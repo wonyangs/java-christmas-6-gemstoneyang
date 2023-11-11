@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.config.Menu;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +14,22 @@ public class OrderHistory {
 
     public OrderHistory(String orderInput) {
         // todo: 검증로직 추가
+
+        if (orderInput.equals("")) {
+            return;
+        }
+
         Arrays.stream(orderInput.split(","))
                 .map(s -> s.split("-"))
                 .forEach(arr -> orders.put(arr[0], Integer.parseInt(arr[1])));
+    }
+
+    public int totalPrice() {
+        int total = orders.entrySet().stream()
+                .mapToInt(entry -> Menu.fromName(entry.getKey()).getPrice() * entry.getValue())
+                .sum();
+
+        return total;
     }
 
     @Override

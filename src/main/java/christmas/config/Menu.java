@@ -2,6 +2,8 @@ package christmas.config;
 
 import static christmas.config.MenuCategory.*;
 
+import java.util.Arrays;
+
 /**
  * 메뉴 정보를 담고 있는 Enum
  */
@@ -27,6 +29,13 @@ public enum Menu {
         this.name = name;
         this.category = category;
         this.price = price;
+    }
+
+    public static Menu fromName(String menuName) {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.name.equals(menuName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid menu name: " + menuName));
     }
 
     public String getName() {
