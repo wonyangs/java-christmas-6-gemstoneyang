@@ -38,7 +38,7 @@ public class DateTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"21,11", "10,0", "1,-9"})
+    @CsvSource(value = {"21,11", "10,0", "1,9"})
     void 현재_날짜와의_차이를_반환한다(int day, int expectValue) {
         Date originDate = Date.of(2023, 12, 10);
         Date diffDate = Date.of(2023, 12, day);
