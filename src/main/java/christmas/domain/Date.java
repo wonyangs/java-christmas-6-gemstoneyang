@@ -34,7 +34,8 @@ public class Date {
     }
 
     public int daysBetween(Date other) {
-        return (int) DAYS.between(this.date, other.date);
+        int diff = (int) DAYS.between(this.date, other.date);
+        return Math.abs(diff);
     }
 
     public boolean isInRange(Date start, Date end) {
