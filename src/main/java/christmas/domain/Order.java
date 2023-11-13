@@ -7,9 +7,13 @@ public class Order {
     private final Date date;
     private final OrderHistory orders;
 
-    public Order(Date date, OrderHistory orders) {
+    private Order(Date date, OrderHistory orders) {
         this.date = date;
         this.orders = orders;
+    }
+
+    public static Order of(Date date, OrderHistory orders) {
+        return new Order(date, orders);
     }
 
     public int totalPrice() {

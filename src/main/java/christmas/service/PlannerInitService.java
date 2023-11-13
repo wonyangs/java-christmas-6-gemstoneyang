@@ -35,6 +35,6 @@ public class PlannerInitService {
     }
 
     public Order getOrder(Date date, OrderHistory orderHistory) {
-        return new Order(date, orderHistory);
+        return Order.of(date, orderHistory);
     }
 }
