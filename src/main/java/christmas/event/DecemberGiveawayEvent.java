@@ -11,7 +11,7 @@ public class DecemberGiveawayEvent implements GiveawayEvent {
 
     @Override
     public boolean isApplicable(Order order) {
-        int totalPrice = order.totalPrice();
+        int totalPrice = order.menus().totalPrice();
 
         return totalPrice >= MINIMUM_PRICE;
     }

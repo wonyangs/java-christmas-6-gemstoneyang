@@ -1,27 +1,11 @@
 package christmas.domain;
 
 /**
- * 주문 내역과 주문 날짜를 저장하는 클래스
+ * 주문 내역과 주문 날짜를 저장하는 record
  */
-public class Order {
-    private final Date date;
-    private final OrderHistory orders;
+public record Order(Date date, OrderHistory menus) {
 
-    private Order(Date date, OrderHistory orders) {
-        this.date = date;
-        this.orders = orders;
-    }
-
-    public static Order of(Date date, OrderHistory orders) {
-        return new Order(date, orders);
-    }
-
-    public int totalPrice() {
-        return orders.totalPrice();
-    }
-
-    @Override
-    public String toString() {
-        return orders.toString();
+    public static Order of(Date date, OrderHistory menus) {
+        return new Order(date, menus);
     }
 }
