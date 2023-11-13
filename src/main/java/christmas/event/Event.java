@@ -6,6 +6,4 @@ public interface Event {
     boolean isApplicable(Order order);
 
     String eventName();
-
-    int discountAmount(Order order);
 }
