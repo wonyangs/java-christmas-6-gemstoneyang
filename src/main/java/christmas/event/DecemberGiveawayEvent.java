@@ -3,8 +3,7 @@ package christmas.event;
 import christmas.config.Menu;
 import christmas.domain.Order;
 import christmas.domain.OrderHistory;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.EnumMap;
 
 public class DecemberGiveawayEvent implements GiveawayEvent {
     private static final int MINIMUM_PRICE = 120_000;
@@ -24,9 +23,9 @@ public class DecemberGiveawayEvent implements GiveawayEvent {
 
     @Override
     public OrderHistory giveawayMenus(Order order) {
-        Map<String, Integer> giveaways = new HashMap<>();
+        EnumMap<Menu, Integer> giveaways  = new EnumMap<>(Menu.class);
 
-        giveaways.put(Menu.CHAMPAGNE.getName(), 1);
+        giveaways.put(Menu.CHAMPAGNE, 1);
 
         return new OrderHistory(giveaways);
     }
