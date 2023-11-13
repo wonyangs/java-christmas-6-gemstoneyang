@@ -15,7 +15,7 @@ public class PlannerInitService {
                 // todo: 검증 로직 추가
                 int day = Integer.parseInt(input);
 
-                return new Date(2023, 12, day);
+                return Date.of(2023, 12, day);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

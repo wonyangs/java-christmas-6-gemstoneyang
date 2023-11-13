@@ -15,10 +15,14 @@ public class Date {
     private final LocalDate date;
     private final DayOfWeek dayOfWeek;
 
-    public Date(int year, int month, int day) {
+    private Date(int year, int month, int day) {
         // todo: 예외 처리
         this.date = LocalDate.of(year, month, day);
         this.dayOfWeek = date.getDayOfWeek();
+    }
+
+    public static Date of(int year, int month, int day) {
+        return new Date(year, month, day);
     }
 
     public boolean isWeekDays() {

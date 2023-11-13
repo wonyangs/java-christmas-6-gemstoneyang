@@ -22,7 +22,7 @@ public class DecemberGiveawayEventTest {
 
     @BeforeAll
     static void setUp() {
-        Date date = new Date(2023, 12, 12);
+        Date date = Date.of(2023, 12, 12);
         OrderHistory order1 = new OrderHistory("티본스테이크-1");
         OrderHistory order2 = new OrderHistory("티본스테이크-3");
 
