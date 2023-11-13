@@ -47,4 +47,16 @@ public class DateTest {
 
         assertEquals(expectValue, actualValue);
     }
+
+    @Test
+    void 날짜_범위_안에_속하는지_확인한다() {
+        Date startDate = new Date(2023, 12, 1);
+        Date endDate = new Date(2023, 12, 10);
+
+        Date containDate = new Date(2023, 12, 7);
+        Date nonContainDate = new Date(2023, 12, 15);
+
+        assertTrue(containDate.isInRange(startDate, endDate));
+        assertFalse(nonContainDate.isInRange(startDate, endDate));
+    }
 }
