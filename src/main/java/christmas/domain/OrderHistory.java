@@ -20,6 +20,10 @@ public class OrderHistory {
         parseInput(input);
     }
 
+    public OrderHistory(Map<String, Integer> orders) {
+        this.orders.putAll(orders);
+    }
+
     private void parseInput(String input) {
         Arrays.stream(input.split(","))
                 .map(s -> s.split("-"))
