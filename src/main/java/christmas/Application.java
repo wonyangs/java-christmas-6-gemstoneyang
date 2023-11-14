@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.domain.EventBenefit;
 import christmas.domain.Order;
 import christmas.domain.OrderHistory;
 import christmas.event.ChristmasDdayEvent;
@@ -40,5 +41,18 @@ public class Application {
         // 증정메뉴
         OrderHistory giveawayMenus = eventService.getGiveawayMenus(order);
         OutputView.giveawayMenu(giveawayMenus);
+
+        // 혜택 내역
+        EventBenefit benefit = eventService.applyAllEvent(order);
+        System.out.println("\n<혜택 내역>");
+        System.out.println(benefit);
+
+        // 총혜택 금액
+        System.out.println("\n<총혜택 금액>");
+        System.out.println(benefit.totalBenefitAmount());
+
+        // 예상 결제 금액
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.println(order.menus().totalPrice() - benefit.totalDiscountAmount());
     }
 }
