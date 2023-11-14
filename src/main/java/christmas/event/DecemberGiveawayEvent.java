@@ -3,8 +3,8 @@ package christmas.event;
 import christmas.config.Menu;
 import christmas.domain.Date;
 import christmas.domain.Order;
-import christmas.domain.OrderHistory;
 import java.util.EnumMap;
+import java.util.Map;
 
 public class DecemberGiveawayEvent implements GiveawayEvent {
     private static final String EVENT_NAME = "증정 이벤트";
@@ -33,11 +33,11 @@ public class DecemberGiveawayEvent implements GiveawayEvent {
     }
 
     @Override
-    public OrderHistory giveawayMenus(Order order) {
+    public Map<Menu, Integer> giveawayMenus(Order order) {
         EnumMap<Menu, Integer> giveaways  = new EnumMap<>(Menu.class);
 
         giveaways.put(Menu.CHAMPAGNE, 1);
 
-        return new OrderHistory(giveaways);
+        return giveaways;
     }
 }

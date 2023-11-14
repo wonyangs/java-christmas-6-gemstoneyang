@@ -1,9 +1,10 @@
 package christmas.event;
 
+import christmas.config.Menu;
 import christmas.domain.Order;
-import christmas.domain.OrderHistory;
+import java.util.Map;
 
 public interface GiveawayEvent extends Event {
 
-    OrderHistory giveawayMenus(Order order);
+    Map<Menu, Integer> giveawayMenus(Order order);
 }

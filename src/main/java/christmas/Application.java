@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.domain.Order;
+import christmas.domain.OrderHistory;
 import christmas.event.ChristmasDdayEvent;
 import christmas.event.DecemberGiveawayEvent;
 import christmas.event.DecemberSpecialEvent;
@@ -21,12 +22,22 @@ public class Application {
                 .addEvent(new DecemberGiveawayEvent())
                 .build();
 
+        // 안녕하세요!
         OutputView.welcomeMessage();
+
+        // 주문 정보 입력
         Order order = initService.getOrder();
+
+        // 혜택 미리 보기!
         OutputView.benefitsMessage(order.date());
+
+        // 주문 메뉴
         OutputView.orderedMenu(order.menus());
+
+        // 할인 전 총주문 금액
         OutputView.totalAmountBeforeDiscount(order.menus());
 
-        eventService.applyEvents(order);
+        // 증정메뉴
+        OrderHistory giveawayMenus = eventService.getGiveawayMenus(order);
     }
 }
