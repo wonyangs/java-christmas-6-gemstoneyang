@@ -1,8 +1,6 @@
 package christmas;
 
-import christmas.domain.Date;
 import christmas.domain.Order;
-import christmas.domain.OrderHistory;
 import christmas.event.ChristmasDdayEvent;
 import christmas.event.DecemberGiveawayEvent;
 import christmas.event.DecemberSpecialEvent;
@@ -14,13 +12,7 @@ import christmas.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        OutputView.welcomeMessage();
-
         PlannerInitService initService = new PlannerInitService();
-        Date date = initService.getUserExpectDate();
-        OrderHistory orderHistory = initService.getUserOrder();
-        Order order = initService.getOrder(date, orderHistory);
-
         PlannerEventService eventService = new PlannerEventService.Builder()
                 .addEvent(new ChristmasDdayEvent())
                 .addEvent(new DecemberWeekdayEvent())
@@ -29,5 +21,12 @@ public class Application {
                 .addEvent(new DecemberGiveawayEvent())
                 .build();
 
+        OutputView.welcomeMessage();
+
+        Order order = initService.getOrder();
+
+        OutputView.showBenefitsMessage(order.date());
+
+        eventService.applyEvents(order);
     }
 }

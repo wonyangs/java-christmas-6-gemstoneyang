@@ -7,7 +7,13 @@ import christmas.view.InputView;
 
 public class PlannerInitService {
 
-    public Date getUserExpectDate() {
+    public Order getOrder() {
+        Date date = getUserExpectDate();
+        OrderHistory orderHistory = getUserOrder();
+        return Order.of(date, orderHistory);
+    }
+
+    private Date getUserExpectDate() {
         while (true) {
             try {
                 String input = InputView.getExpectDate();
@@ -22,7 +28,7 @@ public class PlannerInitService {
         }
     }
 
-    public OrderHistory getUserOrder() {
+    private OrderHistory getUserOrder() {
         while (true) {
             try {
                 String input = InputView.getOrder();
@@ -34,7 +40,4 @@ public class PlannerInitService {
         }
     }
 
-    public Order getOrder(Date date, OrderHistory orderHistory) {
-        return Order.of(date, orderHistory);
-    }
 }
