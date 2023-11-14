@@ -43,6 +43,13 @@ public class OutputView {
         System.out.printf("-%s원\n", formattedNumber);
     }
 
+    public static void totalAmountAfterDiscount(int totalAmount) {
+        String formattedNumber = formatAmount(totalAmount);
+
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.println(formattedNumber + "원");
+    }
+
     private static String formatAmount(int amount) {
         return NumberFormat.getNumberInstance()
                 .format(amount);

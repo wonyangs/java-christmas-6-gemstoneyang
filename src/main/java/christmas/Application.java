@@ -51,7 +51,7 @@ public class Application {
         OutputView.totalBenefitAmount(benefit.totalBenefitAmount());
 
         // 예상 결제 금액
-        System.out.println("\n<할인 후 예상 결제 금액>");
-        System.out.println(order.menus().totalPrice() - benefit.totalDiscountAmount());
+        int expectAmount = order.menus().totalPrice() - benefit.totalDiscountAmount();
+        OutputView.totalAmountAfterDiscount(expectAmount);
     }
 }
