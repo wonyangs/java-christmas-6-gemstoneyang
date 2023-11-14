@@ -39,5 +39,6 @@ public class Application {
 
         // 증정메뉴
         OrderHistory giveawayMenus = eventService.getGiveawayMenus(order);
+        OutputView.giveawayMenu(giveawayMenus);
     }
 }

@@ -26,4 +26,9 @@ public class OutputView {
         System.out.println("\n<할인 전 총주문 금액>");
         System.out.println(formattedNumber + "원");
     }
+
+    public static void giveawayMenu(OrderHistory giveawayMenus) {
+        System.out.println("\n<증정 메뉴>");
+        System.out.println(giveawayMenus);
+    }
 }
