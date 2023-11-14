@@ -24,7 +24,8 @@ public class Application {
         OutputView.welcomeMessage();
         Order order = initService.getOrder();
         OutputView.benefitsMessage(order.date());
-        OutputView.showOrderedMenu(order.menus());
+        OutputView.orderedMenu(order.menus());
+        OutputView.totalAmountBeforeDiscount(order.menus());
 
         eventService.applyEvents(order);
     }
