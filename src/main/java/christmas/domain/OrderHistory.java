@@ -42,9 +42,10 @@ public class OrderHistory {
     }
 
     public int getCategoryCount(MenuCategory category) {
-        return (int) orders.entrySet().stream()
+        return orders.entrySet().stream()
                 .filter(entry -> entry.getKey().getCategory() == category)
-                .count();
+                .mapToInt(Map.Entry::getValue)
+                .sum();
     }
 
     @Override
