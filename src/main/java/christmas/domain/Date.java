@@ -5,6 +5,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.EnumSet;
+import java.util.Objects;
 
 /**
  * 날짜 정보를 관리하는 클래스
@@ -41,5 +42,22 @@ public class Date {
     public boolean isInRange(Date start, Date end) {
         return (date.isAfter(start.date) || date.isEqual(start.date)) &&
                 (date.isBefore(end.date) || date.isEqual(end.date));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Date date1 = (Date) o;
+        return date.equals(date1.date) && dayOfWeek == date1.dayOfWeek;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, dayOfWeek);
     }
 }
