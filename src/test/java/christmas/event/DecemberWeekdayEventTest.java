@@ -34,6 +34,18 @@ public class DecemberWeekdayEventTest {
     }
 
     @Test
+    void 이벤트_기간안의_주문인지_확인한다() {
+        Date date1 = Date.of(2023, 11, 30); // 평일
+        Date date2 = Date.of(2023, 12, 7); // 평일
+        OrderHistory menu = new OrderHistory("초코케이크-1");
+        Order order1 = Order.of(date1, menu);
+        Order order2 = Order.of(date2, menu);
+
+        assertFalse(event.isApplicable(order1));
+        assertTrue(event.isApplicable(order2));
+    }
+
+    @Test
     void 주문이_조건에_맞는지_확인한다() {
         assertFalse(event.isApplicable(nonApplicableOrder1));
         assertFalse(event.isApplicable(nonApplicableOrder2));
