@@ -19,8 +19,7 @@ public class OutputView {
         System.out.println(orderedMenu);
     }
 
-    public static void totalAmountBeforeDiscount(OrderHistory orderedMenu) { // todo: 인자 개선
-        int totalAmount = orderedMenu.totalPrice();
+    public static void totalAmountBeforeDiscount(int totalAmount) {
         String formattedNumber = formatAmount(totalAmount);
 
         System.out.println("\n<할인 전 총주문 금액>");

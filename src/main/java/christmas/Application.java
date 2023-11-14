@@ -36,7 +36,8 @@ public class Application {
         OutputView.orderedMenu(order.menus());
 
         // 할인 전 총주문 금액
-        OutputView.totalAmountBeforeDiscount(order.menus());
+        int totalAmount = order.menus().totalPrice();
+        OutputView.totalAmountBeforeDiscount(totalAmount);
 
         // 증정메뉴
         OrderHistory giveawayMenus = eventService.getGiveawayMenus(order);
