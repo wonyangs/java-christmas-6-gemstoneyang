@@ -45,6 +45,11 @@ public class Date {
     }
 
     @Override
+    public String toString() {
+        return String.format("%d월 %d일", date.getMonthValue(), date.getDayOfMonth());
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
