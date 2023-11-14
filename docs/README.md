@@ -36,7 +36,7 @@
 
 # Service
 
-## PlannerInitService1
+## PlannerInitService
 
 - [X]  방문 날짜 문자열을 숫자로 반환
     - [ ]  문자열이 숫자가 맞는지 검증
@@ -54,6 +54,7 @@
 
 - [X]  이벤트 등록하기
     - [X]  Builder로 구현
+    - [X]  이벤트 종류별로 담아두기
 - [X]  주문을 받아 이벤트 적용 후 내역인 EventBenefit 반환하기
 - [X]  증정 메뉴 구하기
 - [ ]  12월 이벤트 배지 반환하기
