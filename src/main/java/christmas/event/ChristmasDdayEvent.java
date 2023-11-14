@@ -5,17 +5,20 @@ import christmas.domain.Order;
 
 public class ChristmasDdayEvent implements DiscountEvent {
     private static final String EVENT_NAME = "크리스마스 디데이 할인";
+    private static final Date EVENT_START_DATE = Date.of(2023,12,1);
+    private static final Date EVENT_END_DATE = Date.of(2023,12,25);
     private static final int MAX_DISCOUNT = 3_400;
     private static final int DISCOUNT_PER_DAY = 100;
 
 
     @Override
     public boolean isApplicable(Order order) {
-        Date startDate = Date.of(2023, 12, 1);
-        Date endDate = Date.of(2023, 12, 25);
+        return inEventDuration(order);
+    }
 
+    private boolean inEventDuration(Order order) {
         return order.date()
-                .isInRange(startDate, endDate);
+                .isInRange(EVENT_START_DATE, EVENT_END_DATE);
     }
 
     @Override
