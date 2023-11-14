@@ -34,13 +34,15 @@ public class PlannerEventService {
     private Map<Menu, Integer> applyGiveawayEvents(Order order, List<GiveawayEvent> giveawayEvents) {
         Map<Menu, Integer> totalGiveawayMenus = new EnumMap<>(Menu.class);
 
-        giveawayEvents.forEach(giveawayEvent -> {
-            Map<Menu, Integer> giveawayMenus = giveawayEvent.giveawayMenus(order);
-            giveawayMenus.forEach((menu, count) ->
-                    totalGiveawayMenus.merge(menu, count, Integer::sum));
-        });
+        giveawayEvents.stream()
+                .filter(giveawayEvent -> giveawayEvent.isApplicable(order))
+                .forEach(giveawayEvent -> addGiveawayMenus(totalGiveawayMenus, giveawayEvent.giveawayMenus(order)));
 
         return totalGiveawayMenus;
+    }
+
+    private void addGiveawayMenus(Map<Menu, Integer> totalGiveawayMenus, Map<Menu, Integer> giveawayMenus) {
+        giveawayMenus.forEach((menu, count) -> totalGiveawayMenus.merge(menu, count, Integer::sum));
     }
 
     public static class Builder {

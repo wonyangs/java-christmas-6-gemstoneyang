@@ -34,9 +34,12 @@ public class DecemberGiveawayEvent implements GiveawayEvent {
 
     @Override
     public Map<Menu, Integer> giveawayMenus(Order order) {
-        EnumMap<Menu, Integer> giveaways  = new EnumMap<>(Menu.class);
+        EnumMap<Menu, Integer> giveaways = new EnumMap<>(Menu.class);
 
-        giveaways.put(Menu.CHAMPAGNE, 1);
+        int totalPrice = order.menus().totalPrice();
+        if (totalPrice >= MINIMUM_PRICE) {
+            giveaways.put(Menu.CHAMPAGNE, 1);
+        }
 
         return giveaways;
     }

@@ -50,6 +50,9 @@ public class OrderHistory {
 
     @Override
     public String toString() {
+        if (orders.isEmpty()) {
+            return "없음";
+        }
         return orders.entrySet().stream()
                 .map(entry -> entry.getKey().getName() + " " + entry.getValue() + "개")
                 .collect(Collectors.joining("\n"));
