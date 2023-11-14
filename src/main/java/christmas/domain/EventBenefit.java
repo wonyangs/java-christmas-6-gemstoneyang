@@ -1,7 +1,9 @@
 package christmas.domain;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EventBenefit {
     private final Map<String, Integer> benefits = new HashMap<>();
@@ -25,5 +27,20 @@ public class EventBenefit {
 
     public int totalDiscountAmount() {
         return totalDiscount;
+    }
+
+    @Override
+    public String toString() {
+        if (benefits.isEmpty()) {
+            return "없음";
+        }
+        return benefits.entrySet().stream()
+                .map(entry -> printBenefit(entry.getKey(), entry.getValue()))
+                .collect(Collectors.joining("\n"));
+    }
+
+    private String printBenefit(String eventName, int amount) {
+        String formattedNumber = NumberFormat.getNumberInstance().format(amount);
+        return String.format("%s: -%s원", eventName, formattedNumber);
     }
 }
