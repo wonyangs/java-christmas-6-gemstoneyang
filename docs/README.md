@@ -50,10 +50,10 @@
 - [X]  주문 날짜, 주문 메뉴를 받아 Order 객체 반환
     - [X]  주문 날짜에 해당하는 요일 정보 찾기
 
-## EventService
+## PlannerEventService
 
-- [ ]  이벤트 등록하기
-    - [ ]  Builder로 구현해보기?
+- [X]  이벤트 등록하기
+    - [X]  Builder로 구현
 - [ ]  이벤트 적용 후 내역인 Discount 반환하기
     - [ ]  Event Interface 이용하기
 - [ ]  증정 메뉴 출력하기
