@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import christmas.config.Menu;
+import christmas.config.MenuCategory;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
@@ -38,6 +39,12 @@ public class OrderHistory {
         return orders.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
+    }
+
+    public int getCategoryCount(MenuCategory category) {
+        return (int) orders.entrySet().stream()
+                .filter(entry -> entry.getKey().getCategory() == category)
+                .count();
     }
 
     @Override
