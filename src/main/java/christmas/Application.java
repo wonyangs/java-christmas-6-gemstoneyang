@@ -22,10 +22,9 @@ public class Application {
                 .build();
 
         OutputView.welcomeMessage();
-
         Order order = initService.getOrder();
-
-        OutputView.showBenefitsMessage(order.date());
+        OutputView.benefitsMessage(order.date());
+        // todo: 주문 메뉴 출력 로직 구현
 
         eventService.applyEvents(order);
     }
