@@ -24,7 +24,7 @@ public class Application {
         OutputView.welcomeMessage();
         Order order = initService.getOrder();
         OutputView.benefitsMessage(order.date());
-        // todo: 주문 메뉴 출력 로직 구현
+        OutputView.showOrderedMenu(order.menus());
 
         eventService.applyEvents(order);
     }
