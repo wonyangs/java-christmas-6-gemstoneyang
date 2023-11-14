@@ -53,5 +53,9 @@ public class Application {
         // 예상 결제 금액
         int expectAmount = order.menus().totalPrice() - benefit.totalDiscountAmount();
         OutputView.totalAmountAfterDiscount(expectAmount);
+
+        // 12월 이벤트 배지
+        String badge = eventService.getDecemberBadge(benefit);
+        OutputView.decemberBadge(badge);
     }
 }

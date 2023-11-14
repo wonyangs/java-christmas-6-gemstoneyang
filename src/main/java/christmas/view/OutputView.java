@@ -50,6 +50,11 @@ public class OutputView {
         System.out.println(formattedNumber + "원");
     }
 
+    public static void decemberBadge(String badgeName) {
+        System.out.println("\n<12월 이벤트 배지>");
+        System.out.println(badgeName);
+    }
+
     private static String formatAmount(int amount) {
         return NumberFormat.getNumberInstance()
                 .format(amount);

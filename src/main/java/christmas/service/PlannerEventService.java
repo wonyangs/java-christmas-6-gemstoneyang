@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.config.DecemberEventBadge;
 import christmas.config.Menu;
 import christmas.domain.EventBenefit;
 import christmas.domain.Order;
@@ -57,6 +58,12 @@ public class PlannerEventService {
         OrderHistory giveaways = new OrderHistory(giveawayMenus);
 
         benefit.addGiveawayBenefit(eventName, giveaways);
+    }
+
+    public String getDecemberBadge(EventBenefit benefit) {
+        int totalBenefitAmount = benefit.totalBenefitAmount();
+
+        return DecemberEventBadge.getBadge(totalBenefitAmount);
     }
 
     private PlannerEventService(List<DiscountEvent> discountEvents, List<GiveawayEvent> giveawayEvents) {
