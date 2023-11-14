@@ -44,12 +44,10 @@ public class Application {
 
         // 혜택 내역
         EventBenefit benefit = eventService.applyAllEvent(order);
-        System.out.println("\n<혜택 내역>");
-        System.out.println(benefit);
+        OutputView.benefitHistory(benefit);
 
         // 총혜택 금액
-        System.out.println("\n<총혜택 금액>");
-        System.out.println(benefit.totalBenefitAmount());
+        OutputView.totalBenefitAmount(benefit.totalBenefitAmount());
 
         // 예상 결제 금액
         System.out.println("\n<할인 후 예상 결제 금액>");

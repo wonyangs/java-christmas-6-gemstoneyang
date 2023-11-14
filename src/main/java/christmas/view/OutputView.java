@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.domain.Date;
+import christmas.domain.EventBenefit;
 import christmas.domain.OrderHistory;
 import java.text.NumberFormat;
 
@@ -18,10 +19,9 @@ public class OutputView {
         System.out.println(orderedMenu);
     }
 
-    public static void totalAmountBeforeDiscount(OrderHistory orderedMenu) {
+    public static void totalAmountBeforeDiscount(OrderHistory orderedMenu) { // todo: 인자 개선
         int totalAmount = orderedMenu.totalPrice();
-        String formattedNumber = NumberFormat.getNumberInstance()
-                .format(totalAmount);
+        String formattedNumber = formatAmount(totalAmount);
 
         System.out.println("\n<할인 전 총주문 금액>");
         System.out.println(formattedNumber + "원");
@@ -30,5 +30,22 @@ public class OutputView {
     public static void giveawayMenu(OrderHistory giveawayMenus) {
         System.out.println("\n<증정 메뉴>");
         System.out.println(giveawayMenus);
+    }
+
+    public static void benefitHistory(EventBenefit benefit) {
+        System.out.println("\n<혜택 내역>");
+        System.out.println(benefit);
+    }
+
+    public static void totalBenefitAmount(int benefitAmount) {
+        String formattedNumber = formatAmount(benefitAmount);
+
+        System.out.println("\n<총혜택 금액>");
+        System.out.printf("-%s원\n", formattedNumber);
+    }
+
+    private static String formatAmount(int amount) {
+        return NumberFormat.getNumberInstance()
+                .format(amount);
     }
 }
