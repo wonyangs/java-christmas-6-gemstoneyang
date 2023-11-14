@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import christmas.config.Menu;
 import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.domain.OrderHistory;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -60,9 +62,24 @@ public class DecemberGiveawayEventTest {
     @Test
     void 증정메뉴를_반환한다() {
         String expectValue = "샴페인 1개";
-        OrderHistory giveaways = event.giveawayMenus(applicableOrder);
+        Map<Menu, Integer> giveaways = event.giveawayMenus(applicableOrder);
+        OrderHistory giveawayMenus = new OrderHistory(giveaways);
 
-        String actualValue = giveaways.toString();
+        String actualValue = giveawayMenus.toString();
+
+        assertEquals(expectValue, actualValue);
+    }
+
+    @Test
+    void 주문금액이_부족한_경우_없음을_반환한다() {
+        Date date = Date.of(2023, 12, 26);
+        OrderHistory menu = new OrderHistory("타파스-1,제로콜라-1");
+        Order order = Order.of(date, menu);
+
+        OrderHistory giveawayMenus =  new OrderHistory(event.giveawayMenus(order));
+
+        String actualValue = giveawayMenus.toString();
+        String expectValue = "없음";
 
         assertEquals(expectValue, actualValue);
     }
