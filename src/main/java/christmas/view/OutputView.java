@@ -40,6 +40,10 @@ public class OutputView {
         String formattedNumber = formatAmount(benefitAmount);
 
         System.out.println("\n<총혜택 금액>");
+        if (benefitAmount == 0) {
+            System.out.println("0원");
+            return;
+        }
         System.out.printf("-%s원\n", formattedNumber);
     }
 
