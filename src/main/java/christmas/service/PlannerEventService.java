@@ -17,8 +17,13 @@ public class PlannerEventService {
     private final List<DiscountEvent> discountEvents;
     private final List<GiveawayEvent> giveawayEvents;
 
+    private static final int MIN_EVENT_COST = 10_000;
+
     public OrderHistory getGiveawayMenus(Order order) {
         Map<Menu, Integer> totalGiveawayMenus = new EnumMap<>(Menu.class);
+        if (isMinEventCost(order)) {
+            return new OrderHistory(totalGiveawayMenus);
+        }
 
         giveawayEvents.stream()
                 .filter(giveawayEvent -> giveawayEvent.isApplicable(order))
@@ -31,8 +36,17 @@ public class PlannerEventService {
         giveawayMenus.forEach((menu, count) -> totalGiveawayMenus.merge(menu, count, Integer::sum));
     }
 
+    private boolean isMinEventCost(Order order) {
+        int totalCost = order.menus().totalPrice();
+
+        return totalCost < MIN_EVENT_COST;
+    }
+
     public EventBenefit applyAllEvent(Order order) {
         EventBenefit benefit = new EventBenefit();
+        if (isMinEventCost(order)) {
+            return benefit;
+        }
 
         discountEvents.stream()
                 .filter(discountEvent -> discountEvent.isApplicable(order))
