@@ -1,5 +1,8 @@
 package christmas.service;
 
+import static christmas.config.ErrorMessage.INVALID_DATE_INPUT;
+
+import christmas.validator.Validator;
 import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.domain.OrderHistory;
@@ -11,7 +14,9 @@ public class PlannerInitService {
     }
 
     public Date getDate(String input) {
-        // todo: 검증 로직 추가
+        if (!Validator.isValidDay(input)) {
+            throw new IllegalArgumentException(INVALID_DATE_INPUT.getMessage());
+        }
         int day = Integer.parseInt(input);
 
         return Date.of(2023, 12, day);
