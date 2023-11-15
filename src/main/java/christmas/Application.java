@@ -1,8 +1,7 @@
 package christmas;
 
-import christmas.domain.EventBenefit;
-import christmas.domain.Order;
-import christmas.domain.OrderHistory;
+import camp.nextstep.edu.missionutils.Console;
+import christmas.controller.PlannerController;
 import christmas.event.ChristmasDdayEvent;
 import christmas.event.DecemberGiveawayEvent;
 import christmas.event.DecemberSpecialEvent;
@@ -10,7 +9,6 @@ import christmas.event.DecemberWeekdayEvent;
 import christmas.event.DecemberWeekendEvent;
 import christmas.service.PlannerEventService;
 import christmas.service.PlannerInitService;
-import christmas.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -23,39 +21,9 @@ public class Application {
                 .addEvent(new DecemberGiveawayEvent())
                 .build();
 
-        // 안녕하세요!
-        OutputView.welcomeMessage();
+        PlannerController controller = new PlannerController(initService, eventService);
 
-        // 주문 정보 입력
-        Order order = initService.getOrder();
-
-        // 혜택 미리 보기!
-        OutputView.benefitsMessage(order.date());
-
-        // 주문 메뉴
-        OutputView.orderedMenu(order.menus());
-
-        // 할인 전 총주문 금액
-        int totalAmount = order.menus().totalPrice();
-        OutputView.totalAmountBeforeDiscount(totalAmount);
-
-        // 증정메뉴
-        OrderHistory giveawayMenus = eventService.getGiveawayMenus(order);
-        OutputView.giveawayMenu(giveawayMenus);
-
-        // 혜택 내역
-        EventBenefit benefit = eventService.applyAllEvent(order);
-        OutputView.benefitHistory(benefit);
-
-        // 총혜택 금액
-        OutputView.totalBenefitAmount(benefit.totalBenefitAmount());
-
-        // 예상 결제 금액
-        int expectAmount = order.menus().totalPrice() - benefit.totalDiscountAmount();
-        OutputView.totalAmountAfterDiscount(expectAmount);
-
-        // 12월 이벤트 배지
-        String badge = eventService.getDecemberBadge(benefit);
-        OutputView.decemberBadge(badge);
+        controller.run();
+        Console.close();
     }
 }
