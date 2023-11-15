@@ -45,16 +45,4 @@ public class OrderHistoryTest {
 
         assertEquals(expect, actual);
     }
-
-    @Test
-    void 주문이_없을때_총금액을_반환한다() {
-        String input = "";
-
-        OrderHistory orders = new OrderHistory(input);
-
-        int expect = 0;
-        int actual = orders.totalPrice();
-
-        assertEquals(expect, actual);
-    }
 }

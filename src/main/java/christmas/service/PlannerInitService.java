@@ -1,12 +1,14 @@
 package christmas.service;
 
 import static christmas.config.ErrorMessage.INVALID_DATE_INPUT;
-import static christmas.config.ErrorMessage.INVALID_ORDER_INPUT;
 
-import christmas.validator.Validator;
+import christmas.config.Menu;
 import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.domain.OrderHistory;
+import christmas.validator.OrderHistoryValidator;
+import christmas.validator.Validator;
+import java.util.Map;
 
 public class PlannerInitService {
 
@@ -24,9 +26,8 @@ public class PlannerInitService {
     }
 
     public OrderHistory getOrderHistory(String input) {
-        if (!Validator.isValidOrder(input)) {
-            throw new IllegalArgumentException(INVALID_ORDER_INPUT.getMessage());
-        }
-        return new OrderHistory(input);
+        Map<Menu, Integer> parsedInput = OrderHistory.parseOrderInput(input);
+        OrderHistoryValidator.valid(parsedInput);
+        return new OrderHistory(parsedInput);
     }
 }

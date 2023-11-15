@@ -1,7 +1,10 @@
 package christmas.domain;
 
+import static christmas.config.ErrorMessage.INVALID_ORDER_INPUT;
+
 import christmas.config.Menu;
 import christmas.config.MenuCategory;
+import christmas.validator.Validator;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
@@ -14,24 +17,29 @@ public class OrderHistory {
     private final EnumMap<Menu, Integer> orders  = new EnumMap<>(Menu.class);
 
     public OrderHistory(String input) {
-        // todo: 검증로직 추가
-        if (input.equals("")) {
-            return;
+        Map<Menu, Integer> parsedInput = parseOrderInput(input);
+        this.orders.putAll(parsedInput);
+    }
+
+    public OrderHistory(Map<Menu, Integer> parsedOrder) {
+        this.orders.putAll(parsedOrder);
+    }
+
+    public static Map<Menu, Integer> parseOrderInput(String input) {
+        if (!Validator.isValidOrder(input)) {
+            throw new IllegalArgumentException(INVALID_ORDER_INPUT.getMessage());
         }
-        parseInput(input);
-    }
 
-    public OrderHistory(Map<Menu, Integer> orders) {
-        this.orders.putAll(orders);
-    }
+        Map<Menu, Integer> parsedOrder = new EnumMap<>(Menu.class);
 
-    private void parseInput(String input) {
         Arrays.stream(input.split(","))
                 .map(s -> s.split("-"))
-                .forEach(arr -> orders.put(getMenu(arr[0]), Integer.parseInt(arr[1])));
+                .forEach(arr -> parsedOrder.put(getMenu(arr[0]), Integer.parseInt(arr[1])));
+
+        return parsedOrder;
     }
 
-    private Menu getMenu(String menuName) {
+    private static Menu getMenu(String menuName) {
         return Menu.fromName(menuName);
     }
 
