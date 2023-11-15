@@ -9,13 +9,6 @@ public enum MenuCategory {
     DESSERT("디저트"),
     DRINK("음료");
 
-    private final String category;
-
     MenuCategory(String category) {
-        this.category = category;
-    }
-
-    public String getCategory() {
-        return category;
     }
 }
