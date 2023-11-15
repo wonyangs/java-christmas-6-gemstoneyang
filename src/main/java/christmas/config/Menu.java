@@ -1,5 +1,6 @@
 package christmas.config;
 
+import static christmas.config.ErrorMessage.INVALID_ORDER_INPUT;
 import static christmas.config.MenuCategory.*;
 
 import java.util.Arrays;
@@ -35,7 +36,7 @@ public enum Menu {
         return Arrays.stream(Menu.values())
                 .filter(menu -> menu.name.equals(menuName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid menu name: " + menuName));
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_ORDER_INPUT.getMessage()));
     }
 
     public String getName() {
