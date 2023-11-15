@@ -1,7 +1,9 @@
 package christmas.config;
 
 public enum Regex {
-    DAY_INPUT_PATTERN("^[0-9]{1,2}$");
+    VALID_DAY_INPUT("^[0-9]{1,2}$"),
+    COMMA_AT_SIDE("^,.*|.*,$"),
+    VALID_ORDER_INPUT("^[^-]+-([1-9]\\d?)$");
 
     private final String pattern;
 

@@ -28,4 +28,12 @@ public class ValidatorTest {
 
         assertFalse(actualValue);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"abc--1", ",abc-1", "-1", "abc-a"})
+    void 잘못된_주문_입력형식을_검증한다(String input) {
+        boolean actualValue = Validator.isValidOrder(input);
+
+        assertFalse(actualValue);
+    }
 }

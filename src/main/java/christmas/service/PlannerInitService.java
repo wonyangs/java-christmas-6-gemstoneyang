@@ -1,6 +1,7 @@
 package christmas.service;
 
 import static christmas.config.ErrorMessage.INVALID_DATE_INPUT;
+import static christmas.config.ErrorMessage.INVALID_ORDER_INPUT;
 
 import christmas.validator.Validator;
 import christmas.domain.Date;
@@ -23,7 +24,9 @@ public class PlannerInitService {
     }
 
     public OrderHistory getOrderHistory(String input) {
-        // todo: 검증 로직 추가
+        if (!Validator.isValidOrder(input)) {
+            throw new IllegalArgumentException(INVALID_ORDER_INPUT.getMessage());
+        }
         return new OrderHistory(input);
     }
 }
